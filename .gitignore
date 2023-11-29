@@ -24,4 +24,8 @@ hs_err_pid*
 target/
 .idea/
 wq
+config.yml
+checkstyle.xml
+
+
 replay_pid*
