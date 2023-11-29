@@ -1,0 +1,119 @@
+
+<!--这一段定义了pom文件的xml命名空间+模式位置 -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <!--定位我的这个project-->
+    <groupId>com.github.Lyraaaaaaa</groupId>
+    <artifactId>FirstProject-crawler</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>  <!--定义属性-->
+        <maven.compiler.source>1.8</maven.compiler.source>  <!-- 定义Java源代码版本 -->
+        <maven.compiler.target>1.8</maven.compiler.target>  <!-- 定义目标Java版本 -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>  <!-- 定义项目源代码的编码为UTF-8 -->
+    </properties>
+
+    <profiles>  <!-- 定义配置文件 -->
+        <profile>
+            <id>aliyunMavenMirror</id>
+            <activation>    <!-- 定义配置文件的激活条件 -->
+                <activeByDefault>true</activeByDefault><!-- 如果无其他配置文件被激活则这个配置文件被默认激活-->
+            </activation>
+            <pluginRepositories>    <!-- 定义插件仓库 -->
+                <pluginRepository>
+                    <id>alimaven</id>
+                    <name>aliyun maven</name>
+                    <url>http://maven.aliyun.com/nexus/content/groups/public/</url><!-- 阿里云的maven仓库 -->
+                </pluginRepository>
+            </pluginRepositories>
+            <repositories>  <!-- 定义仓库 -->
+                <repository>
+                    <id>alimaven</id>
+                    <name>aliyun maven</name>
+                    <url>http://maven.aliyun.com/nexus/content/groups/public/</url> <!-- 配置了全局的阿里云仓库 -->
+                </repository>
+            </repositories>
+        </profile>
+        <profile>
+            <id>mavenCentral</id>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>mavenCentral</id>
+                    <name>mavenCentral</name>
+                    <url>https://repo.maven.apache.org/maven2</url>
+                </pluginRepository>
+            </pluginRepositories>
+            <repositories>
+                <repository>
+                    <id>mavenCentral</id>
+                    <name>mavenCentral</name>
+                    <url>https://repo.maven.apache.org/maven2</url>
+                </repository>
+            </repositories>
+        </profile>
+    </profiles>
+    <dependencies>  <!-- 定义依赖项 -->
+        <dependency>    <!-- 测试相关的依赖项 -->
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.6.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>      <!-- 测试相关的依赖项 -->
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.6.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.15.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.14</version>
+        </dependency>
+
+
+    </dependencies>
+
+    <build>     <!-- 定义构建配置-->
+        <plugins>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>  <!-- maven-surefire-plugin是用于执行测试的插件 -->
+                <version>2.22.1</version>
+                <configuration>
+                    <argLine>-Dfile.encoding=UTF-8</argLine> <!-- 插件的配置参数👉设置了文件编码为UTF-8 -->
+                </configuration>
+            </plugin>
+                <plugin>
+                    <artifactId>maven-checkstyle-plugin</artifactId>    <!-- 用于检查代码风格的插件 -->
+                    <version>3.1.0</version>
+                    <configuration> <!-- 定义插件的配置-->
+                        <configLocation>checkstyle.xml</configLocation> <!-- 设置了CheckStyle配置文件的位置 -->
+                        <includeTestSourceDirectory>true</includeTestSourceDirectory> <!-- 设置是否包括测试源目录 -->
+                        <enableRulesSummary>false</enableRulesSummary> <!-- 设置了是否启用规则摘要 -->
+                    </configuration>
+                    <executions> <!-- 定义插件的执行 -->
+                        <execution>
+                            <id>compile</id>
+                            <phase>compile</phase> <!-- 表示在编译阶段执行这个插件 -->
+                            <goals>
+                                <goal>check</goal> <!-- 插件目标👉表示执行代码风格检查 -->
+                            </goals>
+                        </execution>
+                    </executions>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.puppycrawl.tools</groupId>
+                            <artifactId>checkstyle</artifactId>
+                            <version>8.29</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+        </plugins>
+    </build>
+</project>
