@@ -97,10 +97,11 @@
                 </configuration>
             </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-checkstyle-plugin</artifactId>    <!-- 用于检查代码风格的插件 -->
                     <version>3.1.0</version>
                     <configuration> <!-- 定义插件的配置-->
-                        <configLocation>checkstyle.xml</configLocation> <!-- 设置了CheckStyle配置文件的位置 -->
+                        <configLocation>google_checks.xml</configLocation> <!-- 设置了CheckStyle配置文件的位置 -->
                         <includeTestSourceDirectory>true</includeTestSourceDirectory> <!-- 设置是否包括测试源目录 -->
                         <enableRulesSummary>false</enableRulesSummary> <!-- 设置了是否启用规则摘要 -->
                     </configuration>
