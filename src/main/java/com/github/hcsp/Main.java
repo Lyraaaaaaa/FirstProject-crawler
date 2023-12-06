@@ -15,9 +15,6 @@ import java.util.List;
 
 
 public class Main {
-
-   // private static final String UserName = "root";
-   // private static final String Password = "82468aliran";
     private static List<String>  loadUrlsFromDatabase(Connection connection,String sql) throws SQLException {
         List<String> results = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(sql); ResultSet resultSet = statement.executeQuery()) {
@@ -28,7 +25,7 @@ public class Main {
         return results;
     }
     public static void main(String[] args) throws IOException, SQLException {
-        Connection connection = DriverManager.getConnection("jdbc:h2:tcp:/Users/aliran/FirstProject-crawler/news", "root", "82468aliran");
+        Connection connection = DriverManager.getConnection("jdbc:h2:tcp:/Users/aliran/FirstProject-crawler/news", "root", "root");
         while (true){
             List<String> linkPool = loadUrlsFromDatabase(connection, "select link from LINKS_TO_BE_PROCESSED");
             if (linkPool.isEmpty()) {
