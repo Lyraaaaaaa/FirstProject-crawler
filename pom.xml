@@ -81,6 +81,13 @@
             <artifactId>jsoup</artifactId>
             <version>1.17.1</version>
         </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>2.2.224</version>
+            <scope>compile</scope>
+        </dependency>
+
     </dependencies>
 
     <build>     <!-- 定义构建配置-->
@@ -129,6 +136,15 @@
                         <version>4.8.2</version>
                     </dependency>
                 </dependencies>
+                    <executions>
+                        <execution>
+                            <id>run-spotbugs</id>
+                            <phase>compile</phase>
+                            <goals>
+                                <goal>check</goal>
+                            </goals>
+                        </execution>
+                    </executions>
             </plugin>
         </plugins>
     </build>

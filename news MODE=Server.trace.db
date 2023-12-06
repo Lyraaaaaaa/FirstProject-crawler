@@ -1,0 +1,3 @@
+2023-12-06 15:35:00.598000+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LINKS_TO_BE_PROCESSED" not found (this database is empty); SQL statement:
+select link from LINKS_TO_BE_PROCESSED [42104-224]
